@@ -1,0 +1,56 @@
+{% extends "predictor/base.html" %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-copy reveal">
+    <p class="eyebrow">Clinical ML Screening Dashboard</p>
+    <h1>Predict disease risk with a focused, professional workflow.</h1>
+    <p class="lead">AI Doctor brings diabetes, Parkinsons, and heart disease prediction into one Django-powered web system with secure user access.</p>
+
+    <div class="hero-actions">
+      {% if user.is_authenticated %}
+        <a class="primary-action" href="{% url 'diabetes' %}">Start Prediction</a>
+      {% else %}
+        <a class="primary-action" href="{% url 'login' %}">Login</a>
+        <a class="secondary-action" href="{% url 'signup' %}">Create Account</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hero-visual reveal delay-one" aria-hidden="true">
+    <div class="scan-panel">
+      <div class="scan-header">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="pulse-ring">
+        <div class="pulse-core">AI</div>
+      </div>
+      <div class="metric-row"><span>Model confidence</span><strong>92%</strong></div>
+      <div class="metric-row"><span>Patient inputs</span><strong>Ready</strong></div>
+      <div class="metric-row"><span>Risk review</span><strong>Live</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="prediction-grid">
+  <a class="prediction-card reveal delay-one" href="{% url 'diabetes' %}">
+    <span class="card-icon">D</span>
+    <strong>Diabetes</strong>
+    <small>8 clinical inputs</small>
+  </a>
+  <a class="prediction-card reveal delay-two" href="{% url 'parkinsons' %}">
+    <span class="card-icon">P</span>
+    <strong>Parkinsons</strong>
+    <small>22 voice measures</small>
+  </a>
+  <a class="prediction-card reveal delay-three" href="{% url 'heartdisease' %}">
+    <span class="card-icon">H</span>
+    <strong>Heart Disease</strong>
+    <small>13 cardiac features</small>
+  </a>
+</section>
+
+<p class="note">This site is a demo project for ML integration and must not be used as medical advice.</p>
+{% endblock %}

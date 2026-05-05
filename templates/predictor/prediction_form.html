@@ -1,0 +1,30 @@
+{% extends "predictor/base.html" %}
+
+{% block content %}
+<section class="form-panel reveal">
+  <div class="section-heading">
+    <p class="eyebrow">Authenticated Predictor</p>
+    <h1>{{ title }}</h1>
+    <p>Enter the required values in the same order used by the trained ML model.</p>
+  </div>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    <fieldset>
+      <legend>Patient Details</legend>
+      {% if output_text %}
+        <p class="result">{{ output_text }}</p>
+      {% endif %}
+      {% for field in form %}
+        <label for="{{ field.id_for_label }}">
+          <span>{{ field.label }}</span>
+          {{ field }}
+          {% for error in field.errors %}
+            <small class="error">{{ error }}</small>
+          {% endfor %}
+        </label>
+      {% endfor %}
+      <button type="submit">Run Prediction</button>
+    </fieldset>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Multiple Disease Predictor</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <header>
+      <div class="container nav-wrap">
+        <a class="logo" href="{% url 'home' %}">
+          <span class="logo-mark">+</span>
+          <span>AI Doctor</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <ul class="menu">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'diabetes' %}">Diabetes</a></li>
+              <li><a href="{% url 'parkinsons' %}">Parkinsons</a></li>
+              <li><a href="{% url 'heartdisease' %}">Heart Disease</a></li>
+              <li class="user-menu-item"><span class="user-pill">{{ user.username }}</span></li>
+              <li><a class="nav-action" href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a class="nav-action" href="{% url 'signup' %}">Create Account</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
