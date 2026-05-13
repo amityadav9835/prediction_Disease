@@ -72,6 +72,8 @@ manage.py
 requirements.txt
 db.sqlite3
 ```
+## Live Demo
+To see a live demo of the project, [click here](https://prediction-disease-opa6.onrender.com/)
 
 ## Installation
 
